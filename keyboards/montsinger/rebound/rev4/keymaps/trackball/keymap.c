@@ -24,6 +24,8 @@ enum custom_keycodes {
   BALL_NCL,//left click
   BALL_RCL,//right click
   BALL_MCL,//middle click
+  BALL_BCL,//mouse button 4 
+  BALL_FCL,//mouse button 5
   BALL_HUE, //hold + scroll ball up and down to cycle hue
   BALL_SAT,//hold + scroll ball up and down to cycle saturation
   BALL_VAL,//hold + scroll ball up and down to cycle value
@@ -48,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ESCFN,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
    CTRLTB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   BALL_MCL, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, 
    LSCL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   BALL_RCL, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-   WIN,     SEARCH,  KC_LALT, KC_LGUI, SYM,     KC_ENT, KC_NO,    KC_SPC,  RAISE,   BALL_DRG, KC_BTN4, KC_BTN5,   MOUSE
+   WIN,     SEARCH,  KC_LALT, KC_LGUI, SYM,     KC_ENT, KC_NO,    KC_SPC,  RAISE,   BALL_DRG, BALL_BCL, BALL_FCL, KC_RALT
 ),
 
 [_SYM] = LAYOUT_all(
@@ -96,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 static bool hue_mode_enabled = 0;
 static bool saturation_mode_enabled = 0;
 static bool value_mode_enabled = 0;
-static bool right_click_mode_enabled = 0;
+/*static bool right_click_mode_enabled = 0;*/
 static bool drag_mode_enabled = 0;
 #define MOUSE_TIMEOUT 1000
 #define TRACKBALL_TIMEOUT 5
@@ -177,7 +179,7 @@ void pointing_device_task() {
             mods = get_mods();
         }
 
-        if (state.button_triggered && (right_click_mode_enabled == 1)) {
+        /*if (state.button_triggered && (right_click_mode_enabled == 1)) {
             if(state.button_down) {
                 mouse.buttons |= MOUSE_BTN2;
             } else {
@@ -185,7 +187,7 @@ void pointing_device_task() {
             }
             pointing_device_set_report(mouse);
 		pointing_device_send();
-		} else if (state.button_triggered && (drag_mode_enabled == 1)) {
+		} else*/ if (state.button_triggered && (drag_mode_enabled == 1)) {
 			if (state.button_down){
 			mouse.buttons |= MOUSE_BTN1;
 			pointing_device_set_report(mouse);
@@ -277,13 +279,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         value_mode_enabled = 0;
         }
         break;
-	case BALL_RCL:
+	/*case BALL_RCL:
 	if (record->event.pressed) {
         right_click_mode_enabled = 1;
         } else {
         right_click_mode_enabled = 0;
         }
-        break;
+        break;*/
 	case BALL_DRG:
 	if (record->event.pressed) {
         drag_mode_enabled = 1;
@@ -295,16 +297,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	case BALL_MCL:
 		record->event.pressed?register_code(KC_BTN3):unregister_code(KC_BTN3);
 		break;
+	case BALL_RCL:
+		record->event.pressed?register_code(KC_BTN2):unregister_code(KC_BTN2);
+		break;
+	case BALL_BCL:
+		record->event.pressed?register_code(KC_BTN4):unregister_code(KC_BTN4);
+		break;
+	case BALL_FCL:
+		record->event.pressed?register_code(KC_BTN5):unregister_code(KC_BTN5);
+		break;
 		
-/*   case BALL_NCL:
-     record->event.pressed?register_code(KC_BTN1):unregister_code(KC_BTN1);
-     break;
-  case BALL_RCL:
-      record->event.pressed?register_code(KC_BTN2):unregister_code(KC_BTN2);
-      break;
-  case BALL_MCL:
-      record->event.pressed?register_code(KC_BTN3):unregister_code(KC_BTN3);
-      break; */
+
     }
 
 
