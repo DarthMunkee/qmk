@@ -62,16 +62,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_RAISE] = LAYOUT_all(
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,             KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-  _______,  KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  _______, KC_F18,  KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
-  _______, KC_F19,  KC_F20,  KC_F21,  KC_F22,  KC_F23,  _______, KC_F24,  KC_NUHS, KC_NUBS, _______, _______,   _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
+  _______, _______, _______, _______, _______, _______, _______, _______,  KC_NUHS, KC_NUBS, KC_VOLD, KC_MUTE,  KC_VOLU,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_MPLY, KC_MNXT
 ),
 
 [_ADJUST] =  LAYOUT_all(
   _______, RESET,   _______, _______, BALL_VAL, RGB_TOG,          _______, _______, _______, _______, _______, KC_DEL,
-  _______, _______, _______, _______, BALL_SAT, RGB_HUI, RGB_MOD, RGB_SAI, RGB_VAI,  _______, _______,  _______, _______,
-  _______, _______, _______, BALL_WHT, BALL_HUE, RGB_HUD, RGB_RMOD, RGB_SAD, RGB_VAD, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+  _______, _______, _______, _______, BALL_SAT, RGB_HUI, RGB_MOD, RGB_SAI, RGB_VAI, _______, _______, _______, _______,
+  _______, _______, _______, BALL_WHT, BALL_HUE, RGB_HUD,RGB_RMOD,RGB_SAD, RGB_VAD, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______
 ),
 
 [_FN] = LAYOUT_all(
@@ -83,8 +83,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_MOUS] =  LAYOUT_all(
   _______, RESET,   _______, _______, BALL_VAL, RGB_TOG,          _______, _______, _______, _______, _______, KC_DEL,
-  _______, _______, _______, _______, BALL_SAT, RGB_HUI, RGB_MOD, RGB_SAI, RGB_VAI,  _______, _______,  _______, _______,
-  _______, _______, _______, BALL_WHT, BALL_HUE, RGB_HUD, RGB_RMOD, RGB_SAD, RGB_VAD, _______, _______, _______, _______,
+  _______, _______, _______, _______, BALL_SAT, RGB_HUI, RGB_MOD, RGB_SAI, RGB_VAI,  _______,_______, _______, _______,
+  _______, _______, _______, BALL_WHT, BALL_HUE, RGB_HUD,RGB_RMOD,RGB_SAD, RGB_VAD, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, BALL_RCL, _______, _______, _______, _______, _______
 )
 
